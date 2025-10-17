@@ -1,19 +1,23 @@
-// Smooth scrolling for navigation links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
+// Header scroll effect and logo click to top
+document.addEventListener('DOMContentLoaded', function() {
+    const header = document.querySelector('.transparent-header');
+    const logoLink = document.querySelector('.logo-link');
+    
+    // Scroll to top when logo is clicked
+    logoLink.addEventListener('click', function(e) {
         e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
+        window.scrollTo({
+            top: 0,
             behavior: 'smooth'
         });
     });
-});
-
-// Navbar background on scroll
-window.addEventListener('scroll', function() {
-    const navbar = document.querySelector('.navbar');
-    if (window.scrollY > 100) {
-        navbar.style.background = 'rgba(26, 43, 76, 0.95)';
-    } else {
-        navbar.style.background = '#1a2b4c';
-    }
+    
+    // Add background when scrolled
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 100) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
 });
